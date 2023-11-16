@@ -13,6 +13,7 @@ function createElement(type, className, text) {
 }
 
 // taikomes i elementus kuriu reikia
+const els = {};
 const formEl = document.getElementById('main');
 const firstNameInputEl = document.getElementById('firstName');
 const lastNameInputEl = document.getElementById('lastName');
