@@ -16,6 +16,8 @@ function createElement(type, className, text) {
 const formEl = document.getElementById('main');
 const firstNameInputEl = document.getElementById('firstName');
 const lastNameInputEl = document.getElementById('lastName');
+const ageInputEl = document.getElementById('age');
+const townInputEl = document.getElementById('town');
 // console.log(firstNameInputEl, lastNameInputEl, formEl);
 
 // funkcijos vykdymui
@@ -29,8 +31,19 @@ function handleNewUser(event) {
   console.log('forma pateikta');
   const firstName = firstNameInputEl.value;
   const lastName = lastNameInputEl.value;
-  console.log('firstName ===', firstName);
-  console.log('lastName ===', lastName);
+  const age = ageInputEl.value;
+  const town = townInputEl.value;
+  // const newPersonLt = {
+  //   vardas: firstName,
+  //   pavarde: lastName,
+  //   amzius: age,
+  //   miestas: town,
+  // };
+  // console.log('newPersonLt ===', newPersonLt);
+  const newPerson = { firstName, lastName, age, town };
+  console.log('newPerson ===', newPerson);
+  // isvalyti formos inputus
+  formEl.reset();
   // sukurti naujo vartotojo objeka su visa jo uzpildyta informacija
   // iskonsolinti
 }
