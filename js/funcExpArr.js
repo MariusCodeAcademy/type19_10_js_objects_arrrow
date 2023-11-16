@@ -4,7 +4,7 @@ console.log('funcExpArr.js file was loaded');
 // Function declaration
 sumD(15, 10);
 function sumD(sk1, sk2) {
-  console.log('sumD');
+  console.log('sumD', this);
   let sum = sk1 + sk2;
   console.log(`${sk1} + ${sk2} = ${sum}`);
   return sum;
@@ -17,7 +17,7 @@ console.log('rezD ===', rezD);
 // const fnName = function() {}
 // sumExpress(15, 10);
 let sumExpress = function (sk1, sk2) {
-  console.log('sumExpress');
+  console.log('sumExpress', this);
   let sum = sk1 + sk2;
   console.log(`${sk1} + ${sk2} = ${sum}`);
   return sum;
@@ -27,9 +27,8 @@ let rezE = sumExpress(5, 10);
 console.log('rezE ===', rezE);
 
 // Arrow fn
-
 let sumArrow = (sk1, sk2) => {
-  console.log('sumArrow');
+  console.log('sumArrow', this);
   let sum = sk1 + sk2;
   console.log(`${sk1} + ${sk2} = ${sum}`);
   return sum;
