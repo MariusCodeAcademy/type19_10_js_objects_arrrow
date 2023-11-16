@@ -22,20 +22,13 @@ const ulListEl = document.getElementById('persons-list');
 // console.log(firstNameInputEl, lastNameInputEl, formEl);
 
 // funkcijos vykdymui
-// jsdoc
-/**
- * Creates new user object
- * @param {SubmitEvent} event
- */
-function handleNewUser(event) {
-  event.preventDefault();
-  console.log('forma pateikta');
-
+function getNewObjFromForm() {
   const newPerson = {};
   newPerson.firstName = firstNameInputEl.value;
   newPerson.lastName = lastNameInputEl.value;
   newPerson.age = ageInputEl.value;
   newPerson.town = townInputEl.value;
+  return newPerson;
   // const firstName = firstNameInputEl.value;
   // const lastName = lastNameInputEl.value;
   // const age = ageInputEl.value;
@@ -48,11 +41,22 @@ function handleNewUser(event) {
   // };
   // console.log('newPersonLt ===', newPersonLt);
   // const newPerson = { firstName, lastName, age, town };
+}
+
+// jsdoc
+/**
+ * Creates new user object
+ * @param {SubmitEvent} event
+ */
+function handleNewUser(event) {
+  event.preventDefault();
+  console.log('forma pateikta');
+
+  const newPerson = getNewObjFromForm();
+
   console.log('newPerson ===', newPerson);
   // isvalyti formos inputus
   formEl.reset();
-  // sukurti naujo vartotojo objeka su visa jo uzpildyta informacija
-  // iskonsolinti
 
   addElToList(newPerson);
 }
