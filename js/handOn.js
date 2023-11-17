@@ -20,12 +20,13 @@ const lastNameInputEl = document.getElementById('lastName');
 const ageInputEl = document.getElementById('age');
 const townInputEl = document.getElementById('town');
 const ulListEl = document.getElementById('persons-list');
+const errorsListEl = document.getElementById('errors-list');
 // console.log(firstNameInputEl, lastNameInputEl, formEl);
 
 // funkcijos vykdymui
 function getNewObjFromForm() {
   const newPerson = {};
-  newPerson.firstName = firstNameInputEl.value;
+  newPerson.firstName = firstNameInputEl.value.trim();
   newPerson.lastName = lastNameInputEl.value;
   newPerson.age = ageInputEl.value;
   newPerson.town = townInputEl.value;
@@ -52,14 +53,41 @@ function getNewObjFromForm() {
 function handleNewUser(event) {
   event.preventDefault();
   console.log('forma pateikta');
+  // issivalyti klaidas
+  errorsListEl.innerHTML = '';
 
   const newPerson = getNewObjFromForm();
 
   console.log('newPerson ===', newPerson);
+  // jei nors newPerson.firstName yra tuscias tai klaida
+  // turcias inputas:
+  if (newPerson.firstName === '') {
+    console.log('firstname privalomas');
+    // sukurti ir patalpinti klaidos li el
+    const liEl = document.createElement('li');
+    liEl.textContent = 'firstname privalomas';
+    errorsListEl.append(liEl);
+  }
+  if (newPerson.lastName === '') {
+    console.log('lastName privalomas');
+    // sukurti ir patalpinti klaidos li el
+    const liEl = document.createElement('li');
+    liEl.textContent = 'lastName privalomas';
+    errorsListEl.append(liEl);
+    return;
+  }
+  if (newPerson.age === '') {
+    console.log('age daugiau uz 15');
+    // sukurti ir patalpinti klaidos li el
+    const liEl = document.createElement('li');
+    liEl.textContent = 'age turetu buti daugiau uz 15';
+    errorsListEl.append(liEl);
+    return;
+  }
+  addElToList(newPerson);
+
   // isvalyti formos inputus
   formEl.reset();
-
-  addElToList(newPerson);
 }
 
 function addElToList(newPersonObj) {
