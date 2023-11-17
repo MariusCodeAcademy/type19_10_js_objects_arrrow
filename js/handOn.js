@@ -27,9 +27,9 @@ const errorsListEl = document.getElementById('errors-list');
 function getNewObjFromForm() {
   const newPerson = {};
   newPerson.firstName = firstNameInputEl.value.trim();
-  newPerson.lastName = lastNameInputEl.value;
-  newPerson.age = ageInputEl.value;
-  newPerson.town = townInputEl.value;
+  newPerson.lastName = lastNameInputEl.value.trim();
+  newPerson.age = ageInputEl.valueAsNumber;
+  newPerson.town = townInputEl.value.trim();
   return newPerson;
   // const firstName = firstNameInputEl.value;
   // const lastName = lastNameInputEl.value;
@@ -43,6 +43,14 @@ function getNewObjFromForm() {
   // };
   // console.log('newPersonLt ===', newPersonLt);
   // const newPerson = { firstName, lastName, age, town };
+}
+
+function showError(errorMsg) {
+  console.log(errorMsg);
+  // sukurti ir patalpinti klaidos li el
+  const liEl = document.createElement('li');
+  liEl.textContent = errorMsg;
+  errorsListEl.append(liEl);
 }
 
 // jsdoc
@@ -62,26 +70,13 @@ function handleNewUser(event) {
   // jei nors newPerson.firstName yra tuscias tai klaida
   // turcias inputas:
   if (newPerson.firstName === '') {
-    console.log('firstname privalomas');
-    // sukurti ir patalpinti klaidos li el
-    const liEl = document.createElement('li');
-    liEl.textContent = 'firstname privalomas';
-    errorsListEl.append(liEl);
+    showError('firstname privalomas');
   }
   if (newPerson.lastName === '') {
-    console.log('lastName privalomas');
-    // sukurti ir patalpinti klaidos li el
-    const liEl = document.createElement('li');
-    liEl.textContent = 'lastName privalomas';
-    errorsListEl.append(liEl);
-    return;
+    showError('Pavarde privaloma');
   }
-  if (newPerson.age === '') {
-    console.log('age daugiau uz 15');
-    // sukurti ir patalpinti klaidos li el
-    const liEl = document.createElement('li');
-    liEl.textContent = 'age turetu buti daugiau uz 15';
-    errorsListEl.append(liEl);
+  if (newPerson.age <= 15 || isNaN(newPerson.age)) {
+    showError('age turetu buti daugiau uz 15');
     return;
   }
   addElToList(newPerson);
