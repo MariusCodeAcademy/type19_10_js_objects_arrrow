@@ -14,6 +14,7 @@ function createElement(type, className, text) {
 
 // taikomes i elementus kuriu reikia
 const els = {};
+const goToBtn = document.getElementById('go-to');
 const formEl = document.getElementById('main');
 const firstNameInputEl = document.getElementById('firstName');
 const lastNameInputEl = document.getElementById('lastName');
@@ -24,6 +25,14 @@ const errorsListEl = document.getElementById('errors-list');
 // console.log(firstNameInputEl, lastNameInputEl, formEl);
 
 // funkcijos vykdymui
+goToBtn.addEventListener('click', () => {
+  console.log('going to google');
+  document.location.href = 'https://google.lt';
+});
+// function goToPage() {
+//   console.log('going to google');
+// }
+// console.log('goToPage', goToPage);
 function getNewObjFromForm() {
   const newPerson = {};
   newPerson.firstName = firstNameInputEl.value.trim();
